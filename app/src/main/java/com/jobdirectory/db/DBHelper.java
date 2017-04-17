@@ -1,4 +1,4 @@
-package com.jobdirectory.jobdirectory.db;
+package com.jobdirectory.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
