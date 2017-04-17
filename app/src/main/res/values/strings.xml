@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Job directory</string>
+    <string name="action_favorite">Add to my favorites</string>
+    <string name="action_languages">Languages</string>
+    <string name="action_settings">My settings</string>
+    <string name="action_search_reset">Search reset</string>
+    <string name="action_login">Login</string>
+    <string name="action_about">About</string>
 </resources>
+
