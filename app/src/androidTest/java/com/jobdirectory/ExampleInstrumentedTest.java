@@ -1,4 +1,4 @@
-package com.jobdirectory.jobdirectory;
+package com.jobdirectory;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
