@@ -1,15 +1,11 @@
 package com.jobdirectory.jobdirectory;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -19,13 +15,13 @@ import android.widget.TextView;
 public class CustomAdapter extends ArrayAdapter<String>{
 
     public CustomAdapter(Context context, String[] foods) {
-        super(context,R.layout.custom_row, foods);
+        super(context,R.layout.custom_row_list_search, foods);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater buckysInflater = LayoutInflater.from(getContext());
-        View customView = buckysInflater.inflate(R.layout.custom_row, parent, false);
+        LayoutInflater ListInflater = LayoutInflater.from(getContext());
+        View customView = ListInflater.inflate(R.layout.custom_row_list_search, parent, false);
 
         String singleFoodItem = getItem(position);
         TextView buckyText = (TextView) customView.findViewById(R.id.buckysText);

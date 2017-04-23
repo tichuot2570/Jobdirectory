@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context="com.jobdirectory.jobdirectory.MainActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="368dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorActionBar"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:visibility="visible"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
 
     <Button
         android:id="@+id/button"
@@ -43,7 +53,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="96dp" />
 
     <Button
         android:id="@+id/button3"
