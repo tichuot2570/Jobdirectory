@@ -166,3 +166,7 @@ crashlytics-build.properties
 fabric.properties
 
 # End of https://www.gitignore.io/api/android,androidstudio
+app/build.gradle
+*.gradle
+app/build.gradle
+app/src/main/res/values/strings.xml
