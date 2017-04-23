@@ -19,7 +19,7 @@ public class Contract {
         public static final String COLUMN_JobDescription_NAME_JOB_EN = "Name_job_EN";
         public static final String COLUMN_JobDescription_NAME_JOB_FR = "Name_job_FR";
         public static final String COLUMN_JobDescription_JOB_DESCRIPTION_EN = "Job_description_EN";
-        public static final String COLUMN_JobDescription_JOB_DESCRIPTION_FN = "Job_description_FN";
+        public static final String COLUMN_JobDescription_JOB_DESCRIPTION_FN = "Job_description_FR";
 
 
         // foreign key! idSpecialization, idLocation, idCompany
@@ -70,8 +70,8 @@ public class Contract {
         public static final String TABLE_Category = "Category";
 
         public static final String COLUMN_Category_NAME_ENTRY_ID = "idCategory";
-        public static final String COLUMN_Category_COMPANY_NAME_EN = "Category_Name_EN";
-        public static final String COLUMN_Category_COMPANY_NAME_FR = "Category_Name_FR";
+        public static final String COLUMN_Category_CATEGORY_NAME_EN = "Category_Name_EN";
+        public static final String COLUMN_Category_CATEGORY_NAME_FR = "Category_Name_FR";
 
     }
 
@@ -83,9 +83,9 @@ public class Contract {
         public static final String COLUMN_User_FIRSTNAME = "Firstname";
         public static final String COLUMN_User_LASTNAME = "Lastname";
         public static final String COLUMN_User_USERNAME = "Username";
-        public static final String COLUMN_User_PASSWORD = "Passwood";
+        public static final String COLUMN_User_PASSWORD = "Password";
         public static final String COLUMN_User_EMAIL = "Email";
-
+        public static final String COLUMN_User_ROLE = "Role";
 
         // foreign key! idCompany
         public static final String COLUMN_User_ID_COMPANY = "idCompany";

@@ -27,13 +27,14 @@ public class SQLCommands {
                     Company.COLUMN_Company_NAME_ENTRY_ID + " INTEGER PRIMARY KEY, " +
                     Company.COLUMN_Company_COMPANY_NAME + NOTNULL + COMMA +
                     Company.COLUMN_Company_COMPANY_DESCRIPTION_EN + NOTNULL +
-                    Company.COLUMN_Company_COMPANY_DESCRIPTION_FR + NOTNULL + ");";
+                    Company.COLUMN_Company_COMPANY_DESCRIPTION_FR + NOTNULL +
+                    ");";
     //Create Category
     public static final String SQL_CREATE_CATEGORY =
             "CREATE TABLE " + Category.TABLE_Category + " (" +
                     Category.COLUMN_Category_NAME_ENTRY_ID + " INTEGER PRIMARY KEY, " +
-                    Category.COLUMN_Category_COMPANY_NAME_EN + NOTNULL + COMMA +
-                    Category.COLUMN_Category_COMPANY_NAME_FR + NOTNULL + ");";
+                    Category.COLUMN_Category_CATEGORY_NAME_EN + NOTNULL + COMMA +
+                    Category.COLUMN_Category_CATEGORY_NAME_FR + NOTNULL + ");";
 
     //Create Category
     public static final String SQL_CREATE_SPECIALIZATION =
@@ -56,6 +57,7 @@ public class SQLCommands {
                     User.COLUMN_User_LASTNAME + NOTNULL + COMMA +
                     User.COLUMN_User_EMAIL + NOTNULL + COMMA +
                     User.COLUMN_User_PASSWORD + NOTNULL + COMMA +
+                    User.COLUMN_User_ROLE + NOTNULL + COMMA +
                     User.COLUMN_User_ID_COMPANY + "INTEGER" + COMMA +
                     "FOREIGN KEY (" + User.COLUMN_User_ID_COMPANY + ") REFERENCES " + Company.TABLE_Company +
                     "(" + Company.COLUMN_Company_NAME_ENTRY_ID + ") ON DELETE CASCADE);";
