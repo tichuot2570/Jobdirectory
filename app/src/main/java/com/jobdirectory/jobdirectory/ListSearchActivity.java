@@ -7,15 +7,36 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class ListSearchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_list_search);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
+        String[] categories = {"Information technology", "Bank", "Health", "Design", "Hospitality"};
+        ListAdapter searchListAdapter = new CustomAdapter(this, categories);
+        ListView CategoryListView = (ListView) findViewById(R.id.listView1);
+        CategoryListView.setAdapter(searchListAdapter);
+
+
+        CategoryListView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener(){
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String category = String.valueOf(parent.getItemAtPosition(position));
+                        Toast.makeText(ListSearchActivity.this, category, Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+
     }
 
     @Override
@@ -23,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.action_bar,menu);
         return  super.onCreateOptionsMenu(menu);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -45,20 +67,5 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
-
-
-
-    /** Called when the user taps the Send button */
-    public void displayList(View view) {
-        Intent intent = new Intent(this, ListSearchActivity.class);
-        //EditText editText = (EditText) findViewById(R.id.editText);
-        //String message = editText.getText().toString();
-        //intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
-    }
-
-
-
-
 
 }
