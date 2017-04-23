@@ -1,9 +1,12 @@
 package com.jobdirectory.jobdirectory;
 
+
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
@@ -43,4 +46,31 @@ public class ListSearchActivity extends AppCompatActivity {
         return  super.onCreateOptionsMenu(menu);
     }
 
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_login:
+                Intent intent_login = new Intent(this, LoginActivity.class);
+                this.startActivity(intent_login);
+                break;
+            case R.id.action_about:
+                Intent intent_about = new Intent(this, AboutActivity.class);
+                this.startActivity(intent_about);
+                break;
+            case R.id.action_settings:
+                Intent intent_settings = new Intent(this, SettingsActivity.class);
+                this.startActivity(intent_settings);
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+        return true;
+    }
+
 }
+
+}
+

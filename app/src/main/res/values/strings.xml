@@ -1,17 +1,26 @@
 <resources>
-    <string name="app_name">Job directory</string>
-    <string name="title_activity_login">"Log in "</string>
 
-    <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="app_name">Job directory</string>
+    <string name="action_favorite">Add to my favorites</string>
+    <string name="action_languages">Languages</string>
+    <string name="action_settings">My settings</string>
+    <string name="action_search_reset">Search reset</string>
+    <string name="action_login">Login</string>
+    <string name="action_about">About</string>
+
+    <string name="about_title">A propos</string>
+    <string name="about_copyright">© jobDirectory 2017</string>
+    <string name="about_version">version: 1.1</string>
+    <string name="about_contact">info@jobdirectory.com</string>
+
+    <string name="settings_titre">My settings</string>
+    <string name="settings_languages">Language</string>
+    <string name="settings_languages1">FR</string>
+    <string name="settings_languages2">EN</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_theme1">Standard</string>
+    <string name="settings_theme2">Light</string>
+    <string name="settings_btn">Save settings</string>
+
 </resources>
+
