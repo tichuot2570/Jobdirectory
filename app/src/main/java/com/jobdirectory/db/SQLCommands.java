@@ -26,7 +26,7 @@ public class SQLCommands {
             "CREATE TABLE " + Company.TABLE_Company + " (" +
                     Company.COLUMN_Company_NAME_ENTRY_ID + " INTEGER PRIMARY KEY, " +
                     Company.COLUMN_Company_COMPANY_NAME + NOTNULL + COMMA +
-                    Company.COLUMN_Company_COMPANY_DESCRIPTION_EN + NOTNULL +
+                    Company.COLUMN_Company_COMPANY_DESCRIPTION_EN + NOTNULL + COMMA +
                     Company.COLUMN_Company_COMPANY_DESCRIPTION_FR + NOTNULL +
                     ");";
     //Create Category
@@ -36,15 +36,15 @@ public class SQLCommands {
                     Category.COLUMN_Category_CATEGORY_NAME_EN + NOTNULL + COMMA +
                     Category.COLUMN_Category_CATEGORY_NAME_FR + NOTNULL + ");";
 
-    //Create Category
+    //Create specialization
     public static final String SQL_CREATE_SPECIALIZATION =
             "CREATE TABLE " + Specialization.TABLE_Specialization + " (" +
                     Specialization.COLUMN_Specialization_NAME_ENTRY_ID + " INTEGER PRIMARY KEY, " +
-                    Specialization.COLUMN_Specialization_SPECIALIZATION_TITLE_EN + NOTNULL + COMMA + Specialization.COLUMN_Specialization_SPECIALIZATION_TITLE_EN + NOTNULL + COMMA +
+                    Specialization.COLUMN_Specialization_SPECIALIZATION_TITLE_EN + NOTNULL + COMMA +
                     Specialization.COLUMN_Specialization_SPECIALIZATION_TITLE_FR + NOTNULL + COMMA +
                     Specialization.COLUMN_Specialization_SPECIALIZATION_DESCRIPTION_EN + NOTNULL + COMMA +
                     Specialization.COLUMN_Specialization_SPECIALIZATION_DESCRIPTION_FR + NOTNULL + COMMA +
-                    Specialization.COLUMN_Specialization_ID_CATEGORY + "INTEGER" + COMMA +
+                    Specialization.COLUMN_Specialization_ID_CATEGORY + " INTEGER" + COMMA +
                     "FOREIGN KEY (" + Specialization.COLUMN_Specialization_ID_CATEGORY + ") REFERENCES " + Category.TABLE_Category +
                     "(" + Category.COLUMN_Category_NAME_ENTRY_ID + ") ON DELETE CASCADE);";
 
@@ -58,10 +58,11 @@ public class SQLCommands {
                     User.COLUMN_User_EMAIL + NOTNULL + COMMA +
                     User.COLUMN_User_PASSWORD + NOTNULL + COMMA +
                     User.COLUMN_User_ROLE + NOTNULL + COMMA +
-                    User.COLUMN_User_ID_COMPANY + "INTEGER" + COMMA +
+                    User.COLUMN_User_ID_COMPANY + " INTEGER" + COMMA +
                     "FOREIGN KEY (" + User.COLUMN_User_ID_COMPANY + ") REFERENCES " + Company.TABLE_Company +
                     "(" + Company.COLUMN_Company_NAME_ENTRY_ID + ") ON DELETE CASCADE);";
 
+    /*
     //Create Job_Description
     public static final String SQL_CREATE_JOB_DESCRIPTION =
             "CREATE TABLE " + JobDescription.TABLE_JobDescription + " (" +
@@ -71,17 +72,20 @@ public class SQLCommands {
                     JobDescription.COLUMN_JobDescription_JOB_DESCRIPTION_EN + NOTNULL + COMMA +
                     JobDescription.COLUMN_JobDescription_JOB_DESCRIPTION_FN + NOTNULL + COMMA +
                     //FK Company
-                    JobDescription.COLUMN_JobDescription_ID_COMPANY + "INTEGER" + COMMA +
+                    JobDescription.COLUMN_JobDescription_ID_COMPANY + " INTEGER" + COMMA +
                     "FOREIGN KEY (" + JobDescription.COLUMN_JobDescription_ID_COMPANY + ") REFERENCES " + Company.TABLE_Company +
                     "(" + Company.COLUMN_Company_NAME_ENTRY_ID + ") ON DELETE CASCADE , " +
                     //FK Location
-                    JobDescription.COLUMN_JobDescription_ID_LOCATION + "INTEGER" + COMMA +
+                    JobDescription.COLUMN_JobDescription_ID_LOCATION + " INTEGER" + COMMA +
                     "FOREIGN KEY (" + JobDescription.COLUMN_JobDescription_ID_LOCATION + ") REFERENCES " + Location.TABLE_Location +
                     "(" + Location.COLUMN_Location_NAME_ENTRY_ID + ") ON DELETE CASCADE , " +
+
                     //FK Specialization
-                    JobDescription.COLUMN_JobDescription_ID_SPECIALIZATION + "INTEGER" + COMMA +
+                    JobDescription.COLUMN_JobDescription_ID_SPECIALIZATION + " INTEGER" + COMMA +
                     "FOREIGN KEY (" + JobDescription.COLUMN_JobDescription_ID_SPECIALIZATION + ") REFERENCES " + Specialization.TABLE_Specialization +
                     "(" + Specialization.COLUMN_Specialization_NAME_ENTRY_ID + ") ON DELETE CASCADE);";
+
+    */
 
 
     /******************* DROPPING TABLES *******************/
@@ -96,6 +100,6 @@ public class SQLCommands {
             "DROP TABLE IF EXISTS " + Category.TABLE_Category;
     public static final String SQL_DELETE_SPECIALIZATION =
             "DROP TABLE IF EXISTS " + Specialization.TABLE_Specialization;
-    public static final String SQL_DELETE_JOB_DESCRIPTION =
-            "DROP TABLE IF EXISTS " + JobDescription.TABLE_JobDescription;
+    /*public static final String SQL_DELETE_JOB_DESCRIPTION =
+            "DROP TABLE IF EXISTS " + JobDescription.TABLE_JobDescription;*/
 }
