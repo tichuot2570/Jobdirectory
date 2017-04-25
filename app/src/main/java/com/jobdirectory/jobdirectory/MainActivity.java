@@ -15,15 +15,19 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.jobdirectory.db.DBHelper;
+
 public class MainActivity extends AppCompatActivity {
+
+    DBHelper jobDirectoryDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        jobDirectoryDB = new DBHelper(this);
     }
 
     @Override
@@ -36,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.action_login:
-                Intent intent_login = new Intent(this, LoginActivity.class);
+                Intent intent_login = new Intent(this, LoginAndroidActivity.class);
                 this.startActivity(intent_login);
                 break;
             case R.id.action_about:
