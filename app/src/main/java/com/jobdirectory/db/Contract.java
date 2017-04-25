@@ -11,9 +11,10 @@ public class Contract {
     public Contract() {
     }
 
+    /*
     //table Job Description
     public static abstract class JobDescription implements BaseColumns {
-        public static final String TABLE_JobDescription = "Job Description";
+        public static final String TABLE_JobDescription = "JobDescription";
 
         public static final String COLUMN_JobDescription_NAME_ENTRY_ID = "idJobDescription";
         public static final String COLUMN_JobDescription_NAME_JOB_EN = "Name_job_EN";
@@ -28,6 +29,7 @@ public class Contract {
         public static final String COLUMN_JobDescription_ID_COMPANY = "idCompany";
 
     }
+    */
 
 
     //table Location
@@ -36,7 +38,7 @@ public class Contract {
 
         public static final String COLUMN_Location_NAME_ENTRY_ID = "idLocation";
         public static final String COLUMN_Location_CITY = "City";
-        public static final String COLUMN_Location_ZIP_CODE = "Zip Code";
+        public static final String COLUMN_Location_ZIP_CODE = "ZipCode";
     }
 
     //table Company
