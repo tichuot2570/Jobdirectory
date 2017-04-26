@@ -22,7 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
         //add ***
-        db = this.getWritableDatabase();
+        //db = this.getWritableDatabase();
     }
 
 
