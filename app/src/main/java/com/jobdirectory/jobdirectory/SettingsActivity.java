@@ -28,7 +28,7 @@ public class SettingsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.action_login:
-                Intent intent_login = new Intent(this, LoginActivity.class);
+                Intent intent_login = new Intent(this, LoginAndroidActivity.class);
                 this.startActivity(intent_login);
                 break;
             case R.id.action_about:
