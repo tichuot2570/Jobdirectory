@@ -1,8 +1,5 @@
 package com.jobdirectory.DataObjects;
 
-import java.io.Serializable;
-import java.io.StringReader;
-
 /**
  * Created by nam on 22-Apr-17.
  */
@@ -15,6 +12,9 @@ public class Specialization {
     private String Spec_Description;
     private String Spec_TitleFR;
     private String Spec_DescriptionFR;
+
+    public Specialization() {
+    }
 
     //for creating the general specialization with FR as language
     public Specialization(int idSpecialization, int fk_CategoryId, String Spec_TitleFR, String Spec_DescriptionFR) {

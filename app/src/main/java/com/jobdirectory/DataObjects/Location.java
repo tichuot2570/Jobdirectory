@@ -7,9 +7,12 @@ package com.jobdirectory.DataObjects;
 public class Location {
     private int idLocation;
     private String name_location;
-    private int zipCode;
+    private String zipCode;
 
-    public Location(int idLocation, String name_location, int zipCode) {
+    public Location() {
+    }
+
+    public Location(int idLocation, String name_location, String zipCode) {
         this.idLocation = idLocation;
         this.name_location = name_location;
         this.zipCode = zipCode;
@@ -31,11 +34,11 @@ public class Location {
         this.name_location = name_location;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 

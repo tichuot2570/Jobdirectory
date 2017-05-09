@@ -1,21 +1,77 @@
 package com.jobdirectory.jobdirectory;
 
+
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
-public class AboutActivity extends AppCompatActivity {
+import com.jobdirectory.DataObjects.Category;
+import com.jobdirectory.db.adapter.CategoryDataSource;
+
+
+import java.util.ArrayList;
+
+public class ListCategoryActivity extends AppCompatActivity {
+
+    int selectedLocation;
+    int selectedItem;
+    String selectedItemName;
+    String selectedLocationName;
+    int selectedLocationID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.activity_list_category);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
+
+        CategoryDataSource categoryDataSource = new CategoryDataSource(this);
+
+        ArrayList<Category> categories = categoryDataSource.getAllCategory();
+
+        ListAdapter searchListAdapter = new AdapterCategory(this, categories);
+
+        ListView CategoryListView = (ListView) findViewById(R.id.listView1);
+
+        CategoryListView.setAdapter(searchListAdapter);
+
+
+        Intent intent = getIntent();
+        selectedLocationName = intent.getStringExtra("selectedLocationName");
+        selectedLocationID = intent.getIntExtra("selectedLocationID", 0);
+
+
+
+
+        CategoryListView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener(){
+                    @Override
+
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String category = String.valueOf(parent.getItemAtPosition(position));
+
+                        Category selectedFromList = (Category) parent.getAdapter().getItem(position);
+                        String str = selectedFromList.getName_category();
+                        selectedItem = selectedFromList.getIdCategory();
+                        selectedItemName = selectedFromList.getName_category();
+
+                        Toast.makeText(ListCategoryActivity.this, str, Toast.LENGTH_LONG).show();
+
+                        displaySpecialization(view);
+                    }
+                }
+        );
     }
 
     @Override
@@ -62,12 +118,6 @@ public class AboutActivity extends AppCompatActivity {
                 Intent intent_settings = new Intent(this, SettingsActivity.class);
                 this.startActivity(intent_settings);
                 break;
-            /*
-            case R.id.action_dbManager:
-                Intent intent_dbManager = new Intent(this, AndroidDatabaseManager.class);
-                this.startActivity(intent_dbManager);
-                break;
-                */
             case R.id.action_favorite:
                 Intent intent_favorite = new Intent(this, ListJobFavoriteActivity.class);
                 intent_favorite.putExtra("activityInfo", "favorite");
@@ -83,4 +133,15 @@ public class AboutActivity extends AppCompatActivity {
 
     //----------------------------
 
+
+    public void displaySpecialization(View view) {
+        Intent intent = new Intent(this, ListSpecializationActivity.class);
+        intent.putExtra("selectedLocationName", selectedLocationName);
+        intent.putExtra("selectedLocationID", selectedLocationID);
+        intent.putExtra("selectedItem", selectedItem);
+        intent.putExtra("selectedItemName", selectedItemName);
+        startActivity(intent);
+    }
 }
+
+

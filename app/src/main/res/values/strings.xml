@@ -1,12 +1,27 @@
 <resources>
 
-    <string name="app_name">Job directory</string>
+    <string name="app_name">Job Directory</string>
     <string name="action_favorite">Add to my favorites</string>
     <string name="action_languages">Languages</string>
     <string name="action_settings">My settings</string>
     <string name="action_search_reset">Search reset</string>
-    <string name="action_login">Login</string>
+    <string name="action_login">Zone admin</string>
+    <string name="action_logout">Logout</string>
     <string name="action_about">About</string>
+    <string name="action_main_data_demo">*** Generate demo data ***</string>
+
+
+    <string name="main_title">What job are you looking for?</string>
+    <string name="main_title_FR">Quel job cherchez-vous?</string>
+    <string name="main_category">which category</string>
+    <string name="main_category_FR">Quelle catégorie</string>
+    <string name="main_location">which location</string>
+    <string name="main_location_FR">Quelle localité</string>
+    <string name="main_findIt">Find it</string>
+    <string name="main_findIt_FR">Chercher</string>
+
+    <string name="category_title">Select a category</string>
+    <string name="location_title">Select a location</string>
 
     <string name="about_title">A propos</string>
     <string name="about_copyright">© jobDirectory 2017</string>
@@ -15,11 +30,11 @@
 
     <string name="settings_titre">My settings</string>
     <string name="settings_languages">Language</string>
-    <string name="settings_languages1">FR</string>
-    <string name="settings_languages2">EN</string>
+    <string name="settings_languages1">EN</string>
+    <string name="settings_languages2">FR</string>
     <string name="settings_theme">Theme</string>
     <string name="settings_theme1">Standard</string>
-    <string name="settings_theme2">Light</string>
+    <string name="settings_theme2">Blue</string>
     <string name="settings_btn">Save settings</string>
     <string name="title_activity_login_android">Sign in</string>
 
@@ -35,6 +50,14 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <string name="edit_job_title">Edit job announcement</string>
+    <string name="edit_job_enter_title">Enter a title</string>
+    <string name="edit_job_enter_description">Enter a description</string>
+    <string name="edit_job_save_btn">Save</string>
+    <string name="edit_job_delete_btn">Delete</string>
+
+    <string name="login_title">Login</string>
 
 </resources>
 

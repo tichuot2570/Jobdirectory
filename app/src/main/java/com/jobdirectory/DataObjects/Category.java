@@ -1,7 +1,5 @@
 package com.jobdirectory.DataObjects;
 
-import java.io.Serializable;
-
 /**
  * Created by nam on 22-Apr-17.
  */
@@ -11,6 +9,9 @@ public class Category {
     private int idCategory;
     private String name_category;
     private String name_categoryFR;
+
+    public Category() {
+    }
 
     //for category with fr as language
     public Category(int idCategory, String name_categoryFR) {
@@ -39,7 +40,6 @@ public class Category {
     public String getName_category() {
         return name_category;
     }
-
 
     public void setName_category(String name_category) {
         this.name_category = name_category;

@@ -9,24 +9,34 @@ public class JobDescription {
     private int fk_LocationId;
     private int fk_SpecializationId;
     private int fk_CompanyId;
+    private String jobName;
+    private String jobNameFR;
     private String jobDescription;
     private String jobDescriptionFR;
+    private String companyName;
+    private String locationName;
 
-    public JobDescription(int idJobDescription, int fk_LocationId, int fk_SpecializationId, int fk_CompanyId, String jobDescription, String jobDescriptionFR) {
+    public JobDescription() {
+    }
+
+    public JobDescription(int idJobDescription, int fk_LocationId, int fk_SpecializationId, int fk_CompanyId, String jobName, String jobNameFR, String jobDescription, String jobDescriptionFR) {
         this.idJobDescription = idJobDescription;
         this.fk_LocationId = fk_LocationId;
         this.fk_SpecializationId = fk_SpecializationId;
         this.fk_CompanyId = fk_CompanyId;
+        this.jobName = jobName;
+        this.jobNameFR = jobNameFR;
         this.jobDescription = jobDescription;
         this.jobDescriptionFR = jobDescriptionFR;
     }
 
     //for creating job with fr as language
-    public JobDescription(int idJobDescription, int fk_LocationId, int fk_SpecializationId, int fk_CompanyId, String jobDescriptionFR) {
+    public JobDescription(int idJobDescription, int fk_LocationId, int fk_SpecializationId, int fk_CompanyId, String jobNameFR, String jobDescriptionFR) {
         this.idJobDescription = idJobDescription;
         this.fk_LocationId = fk_LocationId;
         this.fk_SpecializationId = fk_SpecializationId;
         this.fk_CompanyId = fk_CompanyId;
+        this.jobNameFR = jobNameFR;
         this.jobDescriptionFR = jobDescriptionFR;
     }
 
@@ -62,6 +72,24 @@ public class JobDescription {
         this.fk_CompanyId = fk_CompanyId;
     }
 
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+
+    public String getlocationName() {
+        return locationName;
+    }
+
+    public void setlocationName(String locationName) {
+        this.locationName = locationName;
+    }
+
+
     public String getJobDescription() {
         return jobDescription;
     }
@@ -78,6 +106,22 @@ public class JobDescription {
         this.jobDescriptionFR = jobDescriptionFR;
     }
 
+    public String getJobName() {
+        return jobName;
+    }
+
+    public void setJobName(String jobName) {
+        this.jobName = jobName;
+    }
+
+    public String getJobNameFR() {
+        return jobNameFR;
+    }
+
+    public void setJobNameFR(String jobNameFR) {
+        this.jobNameFR = jobNameFR;
+    }
+
     @Override
     public String toString() {
         return "JobDescription{" +
@@ -85,6 +129,8 @@ public class JobDescription {
                 ", fk_LocationId=" + fk_LocationId +
                 ", fk_CompanyId=" + fk_CompanyId +
                 ", fk_SpecializationId=" + fk_SpecializationId +
+                ", jobName='" + jobName + '\'' +
+                ", jobNameFR='" + jobNameFR + '\'' +
                 ", jobDescription='" + jobDescription + '\'' +
                 ", jobDescriptionFR='" + jobDescriptionFR + '\'' +
                 '}';
