@@ -11,35 +11,6 @@ public class Contract {
     public Contract() {
     }
 
-    /*
-    //table Job Description
-    public static abstract class JobDescription implements BaseColumns {
-        public static final String TABLE_JobDescription = "JobDescription";
-
-        public static final String COLUMN_JobDescription_NAME_ENTRY_ID = "idJobDescription";
-        public static final String COLUMN_JobDescription_NAME_JOB_EN = "Name_job_EN";
-        public static final String COLUMN_JobDescription_NAME_JOB_FR = "Name_job_FR";
-        public static final String COLUMN_JobDescription_JOB_DESCRIPTION_EN = "Job_description_EN";
-        public static final String COLUMN_JobDescription_JOB_DESCRIPTION_FN = "Job_description_FR";
-
-
-        // foreign key! idSpecialization, idLocation, idCompany
-        public static final String COLUMN_JobDescription_ID_SPECIALIZATION = "idSpecialization";
-        public static final String COLUMN_JobDescription_ID_LOCATION = "idLocation";
-        public static final String COLUMN_JobDescription_ID_COMPANY = "idCompany";
-
-    }
-    */
-
-
-    //table Location
-    public static abstract class Location implements BaseColumns {
-        public static final String TABLE_Location = "Location";
-
-        public static final String COLUMN_Location_NAME_ENTRY_ID = "idLocation";
-        public static final String COLUMN_Location_CITY = "City";
-        public static final String COLUMN_Location_ZIP_CODE = "ZipCode";
-    }
 
     //table Company
     public static abstract class Company implements BaseColumns {
@@ -49,6 +20,24 @@ public class Contract {
         public static final String COLUMN_Company_COMPANY_NAME = "Company_Name";
         public static final String COLUMN_Company_COMPANY_DESCRIPTION_EN = "Company_Description_EN";
         public static final String COLUMN_Company_COMPANY_DESCRIPTION_FR = "Company_Description_FR";
+    }
+
+    //table Location
+    public static abstract class Location implements BaseColumns {
+        public static final String TABLE_Location = "Location";
+        public static final String COLUMN_Location_NAME_ENTRY_ID = "idLocation";
+        public static final String COLUMN_Location_CITY = "City";
+        public static final String COLUMN_Location_ZIP_CODE = "ZipCode";
+    }
+
+    //table Category
+    public static abstract class Category implements BaseColumns {
+        public static final String TABLE_Category = "Category";
+
+        public static final String COLUMN_Category_NAME_ENTRY_ID = "idCategory";
+        public static final String COLUMN_Category_CATEGORY_NAME_EN = "Category_Name_EN";
+        public static final String COLUMN_Category_CATEGORY_NAME_FR = "Category_Name_FR";
+
     }
 
     //table Specialization
@@ -67,15 +56,24 @@ public class Contract {
         public static final String COLUMN_Specialization_ID_CATEGORY = "idCategory";
     }
 
-    //table Category
-    public static abstract class Category implements BaseColumns {
-        public static final String TABLE_Category = "Category";
+    //table JobDescription
+    public static abstract class JobDescription implements BaseColumns {
+        public static final String TABLE_JobDescription = "JobDescription";
 
-        public static final String COLUMN_Category_NAME_ENTRY_ID = "idCategory";
-        public static final String COLUMN_Category_CATEGORY_NAME_EN = "Category_Name_EN";
-        public static final String COLUMN_Category_CATEGORY_NAME_FR = "Category_Name_FR";
+        public static final String COLUMN_JobDescription_NAME_ENTRY_ID = "idJobDescription";
+        public static final String COLUMN_JobDescription_NAME_JOB_EN = "Name_job_EN";
+        public static final String COLUMN_JobDescription_NAME_JOB_FR = "Name_job_FR";
+        public static final String COLUMN_JobDescription_JOBDESCRIPTION_EN = "Job_description_EN";
+        public static final String COLUMN_JobDescription_JOBDESCRIPTION_FR = "Job_description_FR";
+
+
+        // foreign key! idSpecialization, idLocation, idCompany
+        public static final String COLUMN_JobDescription_ID_SPECIALIZATION = "idSpecialization";
+        public static final String COLUMN_JobDescription_ID_LOCATION = "idLocation";
+        public static final String COLUMN_JobDescription_ID_COMPANY = "idCompany";
 
     }
+
 
     //table User
     public static abstract class User implements BaseColumns {
@@ -91,6 +89,5 @@ public class Contract {
 
         // foreign key! idCompany
         public static final String COLUMN_User_ID_COMPANY = "idCompany";
-
     }
 }

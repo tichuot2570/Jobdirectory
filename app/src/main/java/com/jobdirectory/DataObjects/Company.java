@@ -10,6 +10,9 @@ public class Company {
     private String description_company;
     private String description_companyFR;
 
+    public Company() {
+    }
+
     //for creating the general specialization with fr as language
     public Company(int idCompany, String name_company, String description_companyFR) {
         this.idCompany = idCompany;
