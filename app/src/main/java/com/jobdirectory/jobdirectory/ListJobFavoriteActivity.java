@@ -30,6 +30,7 @@ public class ListJobFavoriteActivity extends AppCompatActivity {
     int selectedSpecialization;
     int selectedSpecializationID;
     int selectedLocationID;
+    String favoritesText;
     ArrayList<JobDescription> favorites;
 
 
@@ -55,7 +56,13 @@ public class ListJobFavoriteActivity extends AppCompatActivity {
 
 
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("localPref", 0);
-        String favoritesText = sharedPref.getString("jobFavorites", null);
+
+        if (sharedPref.getString("jobFavorites", null) != null) {
+            favoritesText = sharedPref.getString("jobFavorites", null);
+        } else {
+            favoritesText = "[]"; //first time running the app
+        }
+
         Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<Integer>>() {
         }.getType();

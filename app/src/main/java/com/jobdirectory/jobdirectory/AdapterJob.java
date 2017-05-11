@@ -29,6 +29,8 @@ public class AdapterJob extends ArrayAdapter<JobDescription> {
     int jobIdClickFav;
     ArrayList<Integer> jobFavorites;
     Context context;
+    String favoritesText;
+    SharedPreferences sharedPref = getContext().getSharedPreferences("localPref", 0);
 
 
     public AdapterJob(Context context, List<JobDescription> jobDescriptions) {
@@ -67,7 +69,12 @@ public class AdapterJob extends ArrayAdapter<JobDescription> {
         //check Favorits
 
         SharedPreferences sharedPref = getContext().getSharedPreferences("localPref", 0);
-        String favoritesText = sharedPref.getString("jobFavorites", null);
+
+        if (sharedPref.getString("jobFavorites", null) != null) {
+            favoritesText = sharedPref.getString("jobFavorites", null);
+        } else {
+            favoritesText = "[]"; //first time running the app
+        }
         Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<Integer>>() {
         }.getType();
@@ -92,7 +99,13 @@ public class AdapterJob extends ArrayAdapter<JobDescription> {
                 //check Favorits
 
                 SharedPreferences sharedPref = getContext().getSharedPreferences("localPref", 0);
-                String favoritesText = sharedPref.getString("jobFavorites", null);
+
+                if (sharedPref.getString("jobFavorites", null) != null) {
+                    favoritesText = sharedPref.getString("jobFavorites", null);
+                } else {
+                    favoritesText = "[]"; //first time running the app
+                }
+
                 Gson gson = new Gson();
                 Type type = new TypeToken<ArrayList<Integer>>() {
                 }.getType();
@@ -139,8 +152,6 @@ public class AdapterJob extends ArrayAdapter<JobDescription> {
         }
 
         jobFavorites.add(idJob);
-
-        SharedPreferences sharedPref = getContext().getSharedPreferences("localPref", 0);
         SharedPreferences.Editor editor = sharedPref.edit();
         Gson gson = new Gson();
         String jsonFavorites = gson.toJson(jobFavorites);
