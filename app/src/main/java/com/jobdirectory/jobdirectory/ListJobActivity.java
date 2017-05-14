@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jobdirectory.DataObjects.JobDescription;
@@ -54,6 +55,14 @@ public class ListJobActivity extends AppCompatActivity {
         ListView CategoryListView = (ListView) findViewById(R.id.listView1);
         CategoryListView.setAdapter(searchListAdapter);
 
+        TextView textJobInfo = (TextView) findViewById(R.id.jobInfo);
+
+        if (jobDescriptions.size() <= 1) {
+            textJobInfo.setText(jobDescriptions.size() + " " + String.format(getString(R.string.listJob_0Found)));
+        } else {
+            textJobInfo.setText(jobDescriptions.size() + " " + String.format(getString(R.string.listJob_found)));
+        }
+
 
         CategoryListView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
@@ -71,6 +80,7 @@ public class ListJobActivity extends AppCompatActivity {
                 }
         );
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,6 +117,10 @@ public class ListJobActivity extends AppCompatActivity {
                 editor.commit();
                 Intent intent_logout = new Intent(this, MainActivity.class);
                 this.startActivity(intent_logout);
+                break;
+            case R.id.action_home:
+                Intent intent_home = new Intent(this, MainActivity.class);
+                this.startActivity(intent_home);
                 break;
             case R.id.action_about:
                 Intent intent_about = new Intent(this, AboutActivity.class);

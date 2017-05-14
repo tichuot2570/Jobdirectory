@@ -1,7 +1,8 @@
 <resources>
 
     <string name="app_name">Job Directory</string>
-    <string name="action_favorite">Add to my favorites</string>
+    <string name="action_favorite">My favorites</string>
+    <string name="action_home">Back to home</string>
     <string name="action_languages">Languages</string>
     <string name="action_settings">My settings</string>
     <string name="action_search_reset">Search reset</string>
@@ -10,6 +11,8 @@
     <string name="action_about">About</string>
     <string name="action_main_data_demo">*** Generate demo data ***</string>
 
+    <string name="listJob_0Found">job found</string>
+    <string name="listJob_found">jobs found</string>
 
     <string name="main_title">What job are you looking for?</string>
     <string name="main_title_FR">Quel job cherchez-vous?</string>
