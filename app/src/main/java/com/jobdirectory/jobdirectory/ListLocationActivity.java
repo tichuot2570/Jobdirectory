@@ -111,6 +111,10 @@ public class ListLocationActivity extends AppCompatActivity {
                 Intent intent_logout = new Intent(this, MainActivity.class);
                 this.startActivity(intent_logout);
                 break;
+            case R.id.action_home:
+                Intent intent_home = new Intent(this, MainActivity.class);
+                this.startActivity(intent_home);
+                break;
             case R.id.action_about:
                 Intent intent_about = new Intent(this, AboutActivity.class);
                 this.startActivity(intent_about);

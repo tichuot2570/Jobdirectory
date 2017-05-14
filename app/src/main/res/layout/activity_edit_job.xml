@@ -34,13 +34,20 @@
             android:id="@+id/specializationSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray"
+            android:entries="@android:color/black"
+            android:popupBackground="@android:color/darker_gray" />
 
         <Spinner
             android:id="@+id/locationSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray"
+            android:entries="@android:color/black"
+            android:popupBackground="@android:color/darker_gray" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -92,7 +99,8 @@
         android:onClick="saveJob"
         android:text="@string/edit_job_save_btn"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="64dp" />
 
     <Button
         android:id="@+id/deleteBtn"
@@ -103,5 +111,6 @@
         android:onClick="deleteJob"
         android:text="@string/edit_job_delete_btn"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="64dp" />
 </android.support.constraint.ConstraintLayout>

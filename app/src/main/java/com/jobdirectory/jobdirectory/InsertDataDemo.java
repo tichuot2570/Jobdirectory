@@ -95,6 +95,27 @@ public class InsertDataDemo extends AppCompatActivity {
         newSpecialization.setFk_CategoryId(3);
         newSpecialization.setIdSpecialization((int) specializationDs.createSpecialization(newSpecialization));
 
+        newSpecialization.setSpec_Title("Physiotherapist");
+        newSpecialization.setSpec_TitleFR("Physiothérapeute");
+        newSpecialization.setSpec_Description("");
+        newSpecialization.setSpec_DescriptionFR("");
+        newSpecialization.setFk_CategoryId(3);
+        newSpecialization.setIdSpecialization((int) specializationDs.createSpecialization(newSpecialization));
+
+        newSpecialization.setSpec_Title("Private banking");
+        newSpecialization.setSpec_TitleFR("Conseil en placement");
+        newSpecialization.setSpec_Description("");
+        newSpecialization.setSpec_DescriptionFR("");
+        newSpecialization.setFk_CategoryId(4);
+        newSpecialization.setIdSpecialization((int) specializationDs.createSpecialization(newSpecialization));
+
+        newSpecialization.setSpec_Title("Front office");
+        newSpecialization.setSpec_TitleFR("Conseiller de clientèle");
+        newSpecialization.setSpec_Description("");
+        newSpecialization.setSpec_DescriptionFR("");
+        newSpecialization.setFk_CategoryId(4);
+        newSpecialization.setIdSpecialization((int) specializationDs.createSpecialization(newSpecialization));
+
 
         //************* Location
 
