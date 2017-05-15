@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -25,7 +26,7 @@
         </activity>
         <activity
             android:name=".ListCategoryActivity"
-            android:parentActivityName="com.jobdirectory.jobdirectory.MainActivity" />
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".AboutActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".LoginActivity" />
@@ -40,9 +41,7 @@
         <activity android:name=".ListJobCompanyActivity" />
         <activity android:name=".EditJobActivity" />
         <activity android:name=".InsertDataDemo" />
-        <activity android:name=".ListJobFavoriteActivity">
-
-        </activity>
+        <activity android:name=".ListJobFavoriteActivity"></activity>
     </application>
 
 </manifest>
