@@ -14,19 +14,40 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private long userId;
     private String username;
     private String firstname;
     private String lastname;
+
     private String password;
     private String email;
+    private int fk_CompanyId;
     private String role;
 
-    public Long getUserId() {
+    public User(int userId, String username, String firstname, String lastname, String password, String email, int fk_CompanyId, String role) {
+        this.userId = userId;
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.password = password;
+        this.email = email;
+        this.fk_CompanyId = fk_CompanyId;
+        this.role = role;
+    }
+
+    //For the registration
+    public User(String username) {
+        this.username = username;
+    }
+
+    public User() {
+    }
+
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -70,6 +91,14 @@ public class User {
         this.email = email;
     }
 
+    public int getFk_CompanyId() {
+        return fk_CompanyId;
+    }
+
+    public void setFk_CompanyId(int fk_CompanyId) {
+        this.fk_CompanyId = fk_CompanyId;
+    }
+
     public String getRole() {
         return role;
     }
@@ -78,3 +107,4 @@ public class User {
         this.role = role;
     }
 }
+

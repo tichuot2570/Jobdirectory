@@ -1,6 +1,5 @@
 package com.jobdirectory.jobdirectory;
 
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,69 +8,76 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jobdirectory.DataObjects.Location;
-import com.jobdirectory.db.adapter.LocationDataSource;
+import com.jobdirectory.DataObjects.Specialization;
+import com.jobdirectory.cloud.EndpointsSpecializationAsyncTaskInsert;
+import com.jobdirectory.db.DBHelper;
+import com.jobdirectory.db.adapter.SpecializationDataSource;
 
-import java.util.ArrayList;
+public class EditSpecializationActivity extends AppCompatActivity {
 
-public class ListLocationActivity extends AppCompatActivity {
-
-    ArrayList<Location> locations;
-    int selectedLocation;
-    int selectedSpecialization;
-    String selectedLocationName;
-    int selectedSpecializationID;
-    int selectedLocationID;
-    String selectedSpecializationName;
+    int selectedCategoryID;
+    String selectedCategoryName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_location);
+        setContentView(R.layout.activity_edit_specialization);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        LocationDataSource locationDataSource = new LocationDataSource(this);
-        ArrayList<Location> locations = locationDataSource.getAllLocations();
-
-
         Intent intent = getIntent();
 
-        //String selectedItemName = intent.getStringExtra("selectedItemName");
-        selectedSpecializationName = intent.getStringExtra("selectedSpecializationName");
-        selectedSpecializationID = intent.getIntExtra("selectedSpecializationID", 0);
+        selectedCategoryID = intent.getIntExtra("selectedCategoryID", 0);
+        selectedCategoryName = intent.getStringExtra("selectedCategoryName");
+
+        TextView textCategory = (TextView) findViewById(R.id.textCategory);
+        textCategory.setText(selectedCategoryName);
+
+    }
 
 
-        ListAdapter searchListAdapter = new AdapterLocation(this, locations);
+    public void saveSpecialization(View view) {
 
-        ListView CategoryListView = (ListView) findViewById(R.id.listView1);
-        CategoryListView.setAdapter(searchListAdapter);
+        EditText specializationText = (EditText) findViewById(R.id.specializationText);
+        String specializationString = specializationText.getText().toString();
+
+        SpecializationDataSource specializationDs = new SpecializationDataSource(this);
+
+        Specialization newSpecialization = new Specialization();
+        newSpecialization.setSpec_Title(specializationString);
+        newSpecialization.setFk_CategoryId(selectedCategoryID);
+        newSpecialization.setSpec_TitleFR("");
+        newSpecialization.setSpec_Description("");
+        newSpecialization.setSpec_DescriptionFR("");
+        newSpecialization.setIdSpecialization((int) specializationDs.createSpecialization(newSpecialization));
 
 
-        CategoryListView.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    @Override
+        DBHelper dbHelper = DBHelper.getInstance(this);
+        dbHelper.getWritableDatabase().close();
 
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String category = String.valueOf(parent.getItemAtPosition(position));
 
-                        Location selectedFromList = (Location) parent.getAdapter().getItem(position);
-                        String str = selectedFromList.getName_location();
+        //*** insert to cloud ***
 
-                        selectedLocationName = selectedFromList.getName_location();
-                        selectedLocationID = selectedFromList.getIdLocation();
+        com.example.nam.myapplication.backend.specializationApi.model.Specialization specializationCloud = new com.example.nam.myapplication.backend.specializationApi.model.Specialization();
 
-                        Toast.makeText(ListLocationActivity.this, str, Toast.LENGTH_LONG).show();
+        specializationCloud.setIdSpecialization((long) newSpecialization.getIdSpecialization());
+        specializationCloud.setSpecTitle(specializationString);
+        specializationCloud.setFkCategoryId(selectedCategoryID);
+        specializationCloud.setSpecTitleFR("");
+        specializationCloud.setSpecDescription("");
+        specializationCloud.setSpecDescriptionFR("");
 
-                        displayList(view);
-                    }
-                }
-        );
+        new EndpointsSpecializationAsyncTaskInsert(specializationCloud).execute();
+
+
+        Toast.makeText(getApplicationContext(), "specialization added", Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(this, ListCategoryActivity.class);
+        startActivity(intent);
 
     }
 
@@ -80,7 +86,6 @@ public class ListLocationActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.action_bar, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
 
     /**
      * -------- Action bar menu listener
@@ -138,23 +143,4 @@ public class ListLocationActivity extends AppCompatActivity {
 
     //----------------------------
 
-    public void displayAddLocation(View view) {
-        Intent intent = new Intent(this, EditLocationActivity.class);
-        startActivity(intent);
-    }
-
-
-    public void displayList(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        //EditText editText = (EditText) findViewById(R.id.editText);
-        //String message = editText.getText().toString();
-        intent.putExtra("selectedLocationName", selectedLocationName);
-        intent.putExtra("selectedSpecializationID", selectedSpecializationID);
-        intent.putExtra("selectedLocationID", selectedLocationID);
-        intent.putExtra("selectedSpecializationName", selectedSpecializationName);
-        startActivity(intent);
-    }
-
 }
-
-

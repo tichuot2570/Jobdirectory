@@ -20,6 +20,7 @@ import com.jobdirectory.DataObjects.JobDescription;
 import com.jobdirectory.DataObjects.Location;
 import com.jobdirectory.DataObjects.Specialization;
 import com.jobdirectory.DataObjects.User;
+import com.jobdirectory.cloud.EndpointsJobDescriptionAsyncTaskInsert;
 import com.jobdirectory.db.DBHelper;
 import com.jobdirectory.db.adapter.JobDescriptionDataSource;
 import com.jobdirectory.db.adapter.LocationDataSource;
@@ -40,6 +41,10 @@ public class EditJobActivity extends AppCompatActivity {
     int specializationId;
     int locationId;
     User loggedUser;
+    JobDescription newJob;
+    String jobTitleString;
+    String jobDescriptionTextString;
+    JobDescription job;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -209,13 +214,13 @@ public class EditJobActivity extends AppCompatActivity {
 
     public void deleteJobConfirm() {
 
-
         JobDescriptionDataSource jobDs = new JobDescriptionDataSource(this);
         jobDs.deleteJob(selectedJobID);
 
+        new EndpointsJobDescriptionAsyncTaskInsert(selectedJobID).execute();
+
         Intent intent = new Intent(this, ListJobCompanyActivity.class);
         startActivity(intent);
-
 
     }
 
@@ -223,9 +228,9 @@ public class EditJobActivity extends AppCompatActivity {
     public void saveJob(View view) {
 
         EditText jobTitleText = (EditText) findViewById(R.id.jobTitleText);
-        String jobTitleString = jobTitleText.getText().toString();
+        jobTitleString = jobTitleText.getText().toString();
         EditText jobDescriptionText = (EditText) findViewById(R.id.jobDescriptionText);
-        String jobDescriptionTextString = jobDescriptionText.getText().toString();
+        jobDescriptionTextString = jobDescriptionText.getText().toString();
 
         JobDescriptionDataSource jobDs = new JobDescriptionDataSource(this);
 
@@ -250,7 +255,7 @@ public class EditJobActivity extends AppCompatActivity {
 
             //---------------- update job
 
-            JobDescription job = new JobDescription();
+            job = new JobDescription();
             job.setIdJobDescription(selectedJobID);
             job.setJobName(jobTitleString);
             job.setJobDescription(jobDescriptionTextString);
@@ -262,26 +267,31 @@ public class EditJobActivity extends AppCompatActivity {
             DBHelper dbHelper = DBHelper.getInstance(this);
             dbHelper.getWritableDatabase().close();
 
+            updateJobToCloud();
+
         } else {
 
             //---------------- add job
 
-            JobDescription newJob = new JobDescription();
+            newJob = new JobDescription();
             newJob.setJobName(jobTitleString);
             newJob.setJobDescription(jobDescriptionTextString);
-
-
             newJob.setJobDescriptionFR("");//notNull constraint
             newJob.setJobNameFR("");
-
             newJob.setFk_SpecializationId(specializationId);
             newJob.setFk_LocationId(locationId);
             newJob.setFk_CompanyId(loggedUser.getFk_CompanyId());
-
             newJob.setIdJobDescription((int) jobDs.createJob(newJob));
 
             DBHelper dbHelper = DBHelper.getInstance(this);
             dbHelper.getWritableDatabase().close();
+
+
+            //*** insert to cloud ***
+
+            addJobToCloud();
+
+
 
         }
 
@@ -289,5 +299,47 @@ public class EditJobActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void addJobToCloud() {
+
+        com.example.nam.myapplication.backend.jobDescriptionApi.model.JobDescription jobDescriptionCloud = new com.example.nam.myapplication.backend.jobDescriptionApi.model.JobDescription();
+
+        jobDescriptionCloud.setIdJobDescription((long) newJob.getIdJobDescription());
+
+        jobDescriptionCloud.setJobName(jobTitleString);
+        jobDescriptionCloud.setJobDescription(jobDescriptionTextString);
+        jobDescriptionCloud.setFkSpecializationId((long) specializationId);
+
+        jobDescriptionCloud.setJobDescriptionFR("");//notNull constraint
+        jobDescriptionCloud.setJobNameFR("");
+
+        jobDescriptionCloud.setFkLocationId((long) locationId);
+        jobDescriptionCloud.setFkCompanyId((long) loggedUser.getFk_CompanyId());
+
+        new EndpointsJobDescriptionAsyncTaskInsert(jobDescriptionCloud).execute();
+
+    }
+
+
+    public void updateJobToCloud() {
+
+        com.example.nam.myapplication.backend.jobDescriptionApi.model.JobDescription jobDescriptionCloud = new com.example.nam.myapplication.backend.jobDescriptionApi.model.JobDescription();
+
+        jobDescriptionCloud.setIdJobDescription((long) job.getIdJobDescription());
+
+        jobDescriptionCloud.setJobName(jobTitleString);
+        jobDescriptionCloud.setJobDescription(jobDescriptionTextString);
+        jobDescriptionCloud.setFkSpecializationId((long) specializationId);
+
+        jobDescriptionCloud.setJobDescriptionFR("");//notNull constraint
+        jobDescriptionCloud.setJobNameFR("");
+
+        jobDescriptionCloud.setFkLocationId((long) locationId);
+        jobDescriptionCloud.setFkCompanyId((long) loggedUser.getFk_CompanyId());
+
+        new EndpointsJobDescriptionAsyncTaskInsert(jobDescriptionCloud).execute();
+
+    }
+
 
 }

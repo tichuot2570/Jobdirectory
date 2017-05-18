@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -32,24 +32,15 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp">
 
-        <Spinner
-            android:id="@+id/specializationSpinner"
+        <TextView
+            android:id="@+id/textCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="24dp"
             android:layout_weight="1"
-            android:background="@android:color/darker_gray"
-            android:entries="@android:color/black"
-            android:popupBackground="@android:color/darker_gray" />
-
-        <Spinner
-            android:id="@+id/locationSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/darker_gray"
-            android:entries="@android:color/black"
-            android:popupBackground="@android:color/darker_gray" />
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textSize="18sp" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -57,24 +48,11 @@
             android:layout_marginTop="20dp">
 
             <EditText
-                android:id="@+id/jobTitleText"
+                android:id="@+id/specializationText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/edit_job_enter_title"
+                android:hint="@string/edit_specialization_enter"
                 android:singleLine="true" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/jobDescriptionText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/edit_job_enter_description"
-                android:inputType="textMultiLine" />
         </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
@@ -84,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/edit_job_title"
+        android:text="@string/edit_specialization_title"
         android:textColor="@color/colorActionBar"
         android:textSize="24sp"
         app:layout_constraintHorizontal_bias="0.503"
@@ -97,22 +75,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
+        android:layout_marginEnd="64dp"
         android:layout_marginRight="64dp"
-        android:onClick="saveJob"
-        android:text="@string/edit_job_save_btn"
+        android:onClick="saveSpecialization"
+        android:text="@string/edit_specialization_save_btn"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginEnd="64dp" />
+        app:layout_constraintRight_toRightOf="parent" />
 
-    <Button
-        android:id="@+id/deleteBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_marginLeft="64dp"
-        android:onClick="deleteJob"
-        android:text="@string/edit_job_delete_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="64dp" />
+
 </android.support.constraint.ConstraintLayout>

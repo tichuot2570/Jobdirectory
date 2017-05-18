@@ -1,6 +1,5 @@
 package com.jobdirectory.jobdirectory;
 
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,69 +8,59 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.jobdirectory.DataObjects.Location;
+import com.jobdirectory.cloud.EndpointsLocationAsyncTaskInsert;
+import com.jobdirectory.db.DBHelper;
 import com.jobdirectory.db.adapter.LocationDataSource;
 
-import java.util.ArrayList;
-
-public class ListLocationActivity extends AppCompatActivity {
-
-    ArrayList<Location> locations;
-    int selectedLocation;
-    int selectedSpecialization;
-    String selectedLocationName;
-    int selectedSpecializationID;
-    int selectedLocationID;
-    String selectedSpecializationName;
+public class EditLocationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_location);
+        setContentView(R.layout.activity_edit_location);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-
-        LocationDataSource locationDataSource = new LocationDataSource(this);
-        ArrayList<Location> locations = locationDataSource.getAllLocations();
+    }
 
 
-        Intent intent = getIntent();
+    public void saveLocation(View view) {
 
-        //String selectedItemName = intent.getStringExtra("selectedItemName");
-        selectedSpecializationName = intent.getStringExtra("selectedSpecializationName");
-        selectedSpecializationID = intent.getIntExtra("selectedSpecializationID", 0);
+        EditText locationNameText = (EditText) findViewById(R.id.locationNameText);
+        String locationNameString = locationNameText.getText().toString();
+
+        EditText zipText = (EditText) findViewById(R.id.zipText);
+        String zipString = zipText.getText().toString();
+
+        LocationDataSource locationDs = new LocationDataSource(this);
+
+        Location newLocation = new Location();
+        newLocation.setName_location(locationNameString);
+        newLocation.setZipCode(zipString);
+        newLocation.setIdLocation((int) locationDs.createLocation(newLocation));
+
+        DBHelper dbHelper = DBHelper.getInstance(this);
+        dbHelper.getWritableDatabase().close();
 
 
-        ListAdapter searchListAdapter = new AdapterLocation(this, locations);
+        //*** insert to cloud ***
 
-        ListView CategoryListView = (ListView) findViewById(R.id.listView1);
-        CategoryListView.setAdapter(searchListAdapter);
+        com.example.nam.myapplication.backend.locationApi.model.Location locationCloud = new com.example.nam.myapplication.backend.locationApi.model.Location();
+
+        locationCloud.setIdLocation((long) newLocation.getIdLocation());
+        locationCloud.setNameLocation(locationNameString);
+        locationCloud.setZipCode(zipString);
+
+        new EndpointsLocationAsyncTaskInsert(locationCloud).execute();
 
 
-        CategoryListView.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    @Override
+        Toast.makeText(getApplicationContext(), "location added", Toast.LENGTH_LONG).show();
 
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String category = String.valueOf(parent.getItemAtPosition(position));
-
-                        Location selectedFromList = (Location) parent.getAdapter().getItem(position);
-                        String str = selectedFromList.getName_location();
-
-                        selectedLocationName = selectedFromList.getName_location();
-                        selectedLocationID = selectedFromList.getIdLocation();
-
-                        Toast.makeText(ListLocationActivity.this, str, Toast.LENGTH_LONG).show();
-
-                        displayList(view);
-                    }
-                }
-        );
+        Intent intent = new Intent(this, ListLocationActivity.class);
+        startActivity(intent);
 
     }
 
@@ -80,7 +69,6 @@ public class ListLocationActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.action_bar, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
 
     /**
      * -------- Action bar menu listener
@@ -138,23 +126,4 @@ public class ListLocationActivity extends AppCompatActivity {
 
     //----------------------------
 
-    public void displayAddLocation(View view) {
-        Intent intent = new Intent(this, EditLocationActivity.class);
-        startActivity(intent);
-    }
-
-
-    public void displayList(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        //EditText editText = (EditText) findViewById(R.id.editText);
-        //String message = editText.getText().toString();
-        intent.putExtra("selectedLocationName", selectedLocationName);
-        intent.putExtra("selectedSpecializationID", selectedSpecializationID);
-        intent.putExtra("selectedLocationID", selectedLocationID);
-        intent.putExtra("selectedSpecializationName", selectedSpecializationName);
-        startActivity(intent);
-    }
-
 }
-
-

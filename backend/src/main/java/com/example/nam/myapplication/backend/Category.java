@@ -7,9 +7,6 @@ package com.example.nam.myapplication.backend;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
@@ -18,28 +15,35 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCategory;
+    private long idCategory;
     private String name_category;
     private String name_categoryFR;
 
-
-    private List<Specialization> specializations = new ArrayList<Specialization>();
-
-    public List<Specialization> getSpecializations() {
-        return specializations;
+    public Category() {
     }
 
-    public void setSpecializations(List<Specialization> specializations) {
-        this.specializations = specializations;
-    }
-
-
-    public void setIdCategory(Long idCategory) {
+    //for category with fr as language
+    public Category(int idCategory, String name_categoryFR) {
         this.idCategory = idCategory;
+        this.name_categoryFR = name_categoryFR;
     }
 
-    public Long getIdCategory() {
+    public Category(int idCategory, String name_category, String name_categoryFR) {
+        this.idCategory = idCategory;
+        this.name_category = name_category;
+        this.name_categoryFR = name_categoryFR;
+    }
+
+    public Category(String name_category) {
+        this.name_category = name_category;
+    }
+
+    public long getIdCategory() {
         return idCategory;
+    }
+
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
     }
 
     public String getName_category() {
@@ -56,5 +60,15 @@ public class Category {
 
     public void setName_categoryFR(String name_categoryFR) {
         this.name_categoryFR = name_categoryFR;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "idCategory=" + idCategory +
+                " , name_category='" + name_category + '\'' +
+                " , name_categoryFR='" + name_categoryFR + '\'' +
+
+                '}';
     }
 }

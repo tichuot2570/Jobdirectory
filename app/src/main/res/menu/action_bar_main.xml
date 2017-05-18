@@ -27,14 +27,19 @@
         app:showAsAction="never" />
 
     <!--
-    <item android:id="@+id/action_dbManager"
-        android:title="dbManager"
-        app:showAsAction="never"/>
-        -->
 
-    <item
-        android:id="@+id/action_main_data_demo"
-        android:title="@string/action_main_data_demo"
-        app:showAsAction="never" />
+        <item android:id="@+id/action_dbManager"
+            android:title="dbManager"
+            app:showAsAction="never"/>
+
+            -->
+
+    <!--
+        <item
+            android:id="@+id/action_main_data_demo"
+            android:title="@string/action_main_data_demo"
+            app:showAsAction="never" />
+
+               -->
 
 </menu>

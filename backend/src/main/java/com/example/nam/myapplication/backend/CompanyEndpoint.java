@@ -58,7 +58,7 @@ public class CompanyEndpoint {
             name = "get",
             path = "company/{idCompany}",
             httpMethod = ApiMethod.HttpMethod.GET)
-    public Company get(@Named("idCompany") Long idCompany) throws NotFoundException {
+    public Company get(@Named("idCompany") long idCompany) throws NotFoundException {
         logger.info("Getting Company with ID: " + idCompany);
         Company company = ofy().load().type(Company.class).id(idCompany).now();
         if (company == null) {
@@ -80,11 +80,6 @@ public class CompanyEndpoint {
         // Objectify ID generator, e.g. long or String, then you should generate the unique ID yourself prior to saving.
         //
         // If your client provides the ID then you should probably use PUT instead.
-
-        //save the user entities in the database
-        for (User user : company.getUsers()) {
-            ofy().save().entity(user).now();
-        }
         ofy().save().entity(company).now();
         logger.info("Created Company with ID: " + company.getIdCompany());
 
@@ -104,15 +99,9 @@ public class CompanyEndpoint {
             name = "update",
             path = "company/{idCompany}",
             httpMethod = ApiMethod.HttpMethod.PUT)
-    public Company update(@Named("idCompany") Long idCompany, Company company) throws NotFoundException {
+    public Company update(@Named("idCompany") long idCompany, Company company) throws NotFoundException {
         // TODO: You should validate your ID parameter against your resource's ID here.
         checkExists(idCompany);
-
-        //save the user entities in the database
-        for (User user : company.getUsers()) {
-            ofy().save().entity(user).now();
-        }
-        //save the company in the database
         ofy().save().entity(company).now();
         logger.info("Updated Company: " + company);
         return ofy().load().entity(company).now();
@@ -129,7 +118,7 @@ public class CompanyEndpoint {
             name = "remove",
             path = "company/{idCompany}",
             httpMethod = ApiMethod.HttpMethod.DELETE)
-    public void remove(@Named("idCompany") Long idCompany) throws NotFoundException {
+    public void remove(@Named("idCompany") long idCompany) throws NotFoundException {
         checkExists(idCompany);
         ofy().delete().type(Company.class).id(idCompany).now();
         logger.info("Deleted Company with ID: " + idCompany);
@@ -160,7 +149,7 @@ public class CompanyEndpoint {
         return CollectionResponse.<Company>builder().setItems(companyList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
     }
 
-    private void checkExists(Long idCompany) throws NotFoundException {
+    private void checkExists(long idCompany) throws NotFoundException {
         try {
             ofy().load().type(Company.class).id(idCompany).safe();
         } catch (com.googlecode.objectify.NotFoundException e) {

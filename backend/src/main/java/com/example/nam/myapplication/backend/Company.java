@@ -7,34 +7,49 @@ package com.example.nam.myapplication.backend;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCompany")
-    private Long idCompany;
+    private long idCompany;
     private String name_company;
     private String description_company;
     private String description_companyFR;
-    private JobDescription jobDescription;
-    //1 company can have 1-many users
-    private List<User> users = new ArrayList<User>();
+
+    public Company() {
+    }
+
+    //for creating the general specialization with fr as language
+    public Company(int idCompany, String name_company, String description_companyFR) {
+        this.idCompany = idCompany;
+        this.name_company = name_company;
+        this.description_companyFR = description_companyFR;
+    }
+
+    //for creating the general specialization with fr and en as language
+    public Company(long idCompany, String name_company, String description_company, String description_companyFR) {
+        this.idCompany = idCompany;
+        this.description_company = description_company;
+        this.name_company = name_company;
+        this.description_companyFR = description_companyFR;
+    }
 
 
-    public Long getIdCompany() {
+    //for creating the general specialization with en as language
+    public Company(String name_company, String description_company) {
+        this.name_company = name_company;
+        this.description_company = description_company;
+    }
+
+    public long getIdCompany() {
         return idCompany;
     }
 
-    public void setIdCompany(Long idCompany) {
+    public void setIdCompany(int idCompany) {
         this.idCompany = idCompany;
     }
 
@@ -62,22 +77,13 @@ public class Company {
         this.description_companyFR = description_companyFR;
     }
 
-    @OneToOne(mappedBy = "company")
-    public JobDescription getJobDescription() {
-        return jobDescription;
+    @Override
+    public String toString() {
+        return "Company{" +
+                "idCompany=" + idCompany +
+                ", name_company='" + name_company + '\'' +
+                ", description_company='" + description_company + '\'' +
+                ", description_companyFR='" + description_companyFR + '\'' +
+                '}';
     }
-
-    public void setJobDescription(JobDescription jobDescription) {
-        this.jobDescription = jobDescription;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-
 }

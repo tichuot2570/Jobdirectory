@@ -58,7 +58,7 @@ public class JobDescriptionEndpoint {
             name = "get",
             path = "jobDescription/{idJobDescription}",
             httpMethod = ApiMethod.HttpMethod.GET)
-    public JobDescription get(@Named("idJobDescription") Long idJobDescription) throws NotFoundException {
+    public JobDescription get(@Named("idJobDescription") long idJobDescription) throws NotFoundException {
         logger.info("Getting JobDescription with ID: " + idJobDescription);
         JobDescription jobDescription = ofy().load().type(JobDescription.class).id(idJobDescription).now();
         if (jobDescription == null) {
@@ -80,18 +80,6 @@ public class JobDescriptionEndpoint {
         // Objectify ID generator, e.g. long or String, then you should generate the unique ID yourself prior to saving.
         //
         // If your client provides the ID then you should probably use PUT instead.
-        //save the location in the database
-        Location location = jobDescription.getLocation();
-        ofy().save().entity(location).now();
-
-        //save the company in the database
-        Company company = jobDescription.getCompany();
-        ofy().save().entity(company).now();
-
-        //save the specialization in the database
-        Specialization specialization = jobDescription.getSpecialization();
-        ofy().save().entity(specialization).now();
-
         ofy().save().entity(jobDescription).now();
         logger.info("Created JobDescription with ID: " + jobDescription.getIdJobDescription());
 
@@ -111,22 +99,9 @@ public class JobDescriptionEndpoint {
             name = "update",
             path = "jobDescription/{idJobDescription}",
             httpMethod = ApiMethod.HttpMethod.PUT)
-    public JobDescription update(@Named("idJobDescription") Long idJobDescription, JobDescription jobDescription) throws NotFoundException {
+    public JobDescription update(@Named("idJobDescription") long idJobDescription, JobDescription jobDescription) throws NotFoundException {
         // TODO: You should validate your ID parameter against your resource's ID here.
         checkExists(idJobDescription);
-
-        //save the location in the database
-        Location location = jobDescription.getLocation();
-        ofy().save().entity(location).now();
-
-        //save the company in the database
-        Company company = jobDescription.getCompany();
-        ofy().save().entity(company).now();
-
-        //save the specialization in the database
-        Specialization specialization = jobDescription.getSpecialization();
-        ofy().save().entity(specialization).now();
-
         ofy().save().entity(jobDescription).now();
         logger.info("Updated JobDescription: " + jobDescription);
         return ofy().load().entity(jobDescription).now();
@@ -143,7 +118,7 @@ public class JobDescriptionEndpoint {
             name = "remove",
             path = "jobDescription/{idJobDescription}",
             httpMethod = ApiMethod.HttpMethod.DELETE)
-    public void remove(@Named("idJobDescription") Long idJobDescription) throws NotFoundException {
+    public void remove(@Named("idJobDescription") long idJobDescription) throws NotFoundException {
         checkExists(idJobDescription);
         ofy().delete().type(JobDescription.class).id(idJobDescription).now();
         logger.info("Deleted JobDescription with ID: " + idJobDescription);
@@ -174,7 +149,7 @@ public class JobDescriptionEndpoint {
         return CollectionResponse.<JobDescription>builder().setItems(jobDescriptionList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
     }
 
-    private void checkExists(Long idJobDescription) throws NotFoundException {
+    private void checkExists(long idJobDescription) throws NotFoundException {
         try {
             ofy().load().type(JobDescription.class).id(idJobDescription).safe();
         } catch (com.googlecode.objectify.NotFoundException e) {

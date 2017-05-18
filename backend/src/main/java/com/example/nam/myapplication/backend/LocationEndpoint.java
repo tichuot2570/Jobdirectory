@@ -58,7 +58,7 @@ public class LocationEndpoint {
             name = "get",
             path = "location/{idLocation}",
             httpMethod = ApiMethod.HttpMethod.GET)
-    public Location get(@Named("idLocation") Long idLocation) throws NotFoundException {
+    public Location get(@Named("idLocation") long idLocation) throws NotFoundException {
         logger.info("Getting Location with ID: " + idLocation);
         Location location = ofy().load().type(Location.class).id(idLocation).now();
         if (location == null) {
@@ -99,7 +99,7 @@ public class LocationEndpoint {
             name = "update",
             path = "location/{idLocation}",
             httpMethod = ApiMethod.HttpMethod.PUT)
-    public Location update(@Named("idLocation") Long idLocation, Location location) throws NotFoundException {
+    public Location update(@Named("idLocation") long idLocation, Location location) throws NotFoundException {
         // TODO: You should validate your ID parameter against your resource's ID here.
         checkExists(idLocation);
         ofy().save().entity(location).now();
@@ -118,7 +118,7 @@ public class LocationEndpoint {
             name = "remove",
             path = "location/{idLocation}",
             httpMethod = ApiMethod.HttpMethod.DELETE)
-    public void remove(@Named("idLocation") Long idLocation) throws NotFoundException {
+    public void remove(@Named("idLocation") long idLocation) throws NotFoundException {
         checkExists(idLocation);
         ofy().delete().type(Location.class).id(idLocation).now();
         logger.info("Deleted Location with ID: " + idLocation);
@@ -149,7 +149,7 @@ public class LocationEndpoint {
         return CollectionResponse.<Location>builder().setItems(locationList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
     }
 
-    private void checkExists(Long idLocation) throws NotFoundException {
+    private void checkExists(long idLocation) throws NotFoundException {
         try {
             ofy().load().type(Location.class).id(idLocation).safe();
         } catch (com.googlecode.objectify.NotFoundException e) {

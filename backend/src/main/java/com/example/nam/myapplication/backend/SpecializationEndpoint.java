@@ -58,7 +58,7 @@ public class SpecializationEndpoint {
             name = "get",
             path = "specialization/{idSpecialization}",
             httpMethod = ApiMethod.HttpMethod.GET)
-    public Specialization get(@Named("idSpecialization") Long idSpecialization) throws NotFoundException {
+    public Specialization get(@Named("idSpecialization") long idSpecialization) throws NotFoundException {
         logger.info("Getting Specialization with ID: " + idSpecialization);
         Specialization specialization = ofy().load().type(Specialization.class).id(idSpecialization).now();
         if (specialization == null) {
@@ -99,7 +99,7 @@ public class SpecializationEndpoint {
             name = "update",
             path = "specialization/{idSpecialization}",
             httpMethod = ApiMethod.HttpMethod.PUT)
-    public Specialization update(@Named("idSpecialization") Long idSpecialization, Specialization specialization) throws NotFoundException {
+    public Specialization update(@Named("idSpecialization") long idSpecialization, Specialization specialization) throws NotFoundException {
         // TODO: You should validate your ID parameter against your resource's ID here.
         checkExists(idSpecialization);
         ofy().save().entity(specialization).now();
@@ -118,7 +118,7 @@ public class SpecializationEndpoint {
             name = "remove",
             path = "specialization/{idSpecialization}",
             httpMethod = ApiMethod.HttpMethod.DELETE)
-    public void remove(@Named("idSpecialization") Long idSpecialization) throws NotFoundException {
+    public void remove(@Named("idSpecialization") long idSpecialization) throws NotFoundException {
         checkExists(idSpecialization);
         ofy().delete().type(Specialization.class).id(idSpecialization).now();
         logger.info("Deleted Specialization with ID: " + idSpecialization);
@@ -149,7 +149,7 @@ public class SpecializationEndpoint {
         return CollectionResponse.<Specialization>builder().setItems(specializationList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
     }
 
-    private void checkExists(Long idSpecialization) throws NotFoundException {
+    private void checkExists(long idSpecialization) throws NotFoundException {
         try {
             ofy().load().type(Specialization.class).id(idSpecialization).safe();
         } catch (com.googlecode.objectify.NotFoundException e) {

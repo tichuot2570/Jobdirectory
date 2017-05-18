@@ -58,7 +58,7 @@ public class CategoryEndpoint {
             name = "get",
             path = "category/{idCategory}",
             httpMethod = ApiMethod.HttpMethod.GET)
-    public Category get(@Named("idCategory") Long idCategory) throws NotFoundException {
+    public Category get(@Named("idCategory") long idCategory) throws NotFoundException {
         logger.info("Getting Category with ID: " + idCategory);
         Category category = ofy().load().type(Category.class).id(idCategory).now();
         if (category == null) {
@@ -80,12 +80,6 @@ public class CategoryEndpoint {
         // Objectify ID generator, e.g. long or String, then you should generate the unique ID yourself prior to saving.
         //
         // If your client provides the ID then you should probably use PUT instead.
-
-        //save the specialization entities in the database
-        for (Specialization specialization : category.getSpecializations()) {
-            ofy().save().entity(specialization).now();
-        }
-        //save the category in the database
         ofy().save().entity(category).now();
         logger.info("Created Category with ID: " + category.getIdCategory());
 
@@ -105,14 +99,9 @@ public class CategoryEndpoint {
             name = "update",
             path = "category/{idCategory}",
             httpMethod = ApiMethod.HttpMethod.PUT)
-    public Category update(@Named("idCategory") Long idCategory, Category category) throws NotFoundException {
+    public Category update(@Named("idCategory") long idCategory, Category category) throws NotFoundException {
         // TODO: You should validate your ID parameter against your resource's ID here.
         checkExists(idCategory);
-        //save the specialization entities in the database
-        for (Specialization specialization : category.getSpecializations()) {
-            ofy().save().entity(specialization).now();
-        }
-
         ofy().save().entity(category).now();
         logger.info("Updated Category: " + category);
         return ofy().load().entity(category).now();
@@ -129,7 +118,7 @@ public class CategoryEndpoint {
             name = "remove",
             path = "category/{idCategory}",
             httpMethod = ApiMethod.HttpMethod.DELETE)
-    public void remove(@Named("idCategory") Long idCategory) throws NotFoundException {
+    public void remove(@Named("idCategory") long idCategory) throws NotFoundException {
         checkExists(idCategory);
         ofy().delete().type(Category.class).id(idCategory).now();
         logger.info("Deleted Category with ID: " + idCategory);
@@ -160,7 +149,7 @@ public class CategoryEndpoint {
         return CollectionResponse.<Category>builder().setItems(categoryList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
     }
 
-    private void checkExists(Long idCategory) throws NotFoundException {
+    private void checkExists(long idCategory) throws NotFoundException {
         try {
             ofy().load().type(Category.class).id(idCategory).safe();
         } catch (com.googlecode.objectify.NotFoundException e) {
