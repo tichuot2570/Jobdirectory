@@ -1,6 +1,5 @@
 package com.jobdirectory.jobdirectory;
 
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -29,6 +28,7 @@ public class ListSpecializationActivity extends AppCompatActivity {
     int selectedSpecializationID;
     String selectedSpecializationName;
     String selectedLocationName;
+    String selectedItemName;
     int selectedLocationID;
 
     @Override
@@ -49,7 +49,7 @@ public class ListSpecializationActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         selectedCategory = intent.getIntExtra("selectedItem", 0);
-        String selectedItemName = intent.getStringExtra("selectedItemName");
+        selectedItemName = intent.getStringExtra("selectedItemName");
         selectedLocationName = intent.getStringExtra("selectedLocationName");
         selectedLocationID = intent.getIntExtra("selectedLocationID", 0);
 
@@ -146,6 +146,14 @@ public class ListSpecializationActivity extends AppCompatActivity {
     }
 
     //----------------------------
+
+    public void displayAddSpecialization(View view) {
+        //selectedJobID = 0;
+        Intent intent = new Intent(this, EditSpecializationActivity.class);
+        intent.putExtra("selectedCategoryID", selectedCategory);
+        intent.putExtra("selectedCategoryName", selectedItemName);
+        startActivity(intent);
+    }
 
 
     public void displayList(View view) {

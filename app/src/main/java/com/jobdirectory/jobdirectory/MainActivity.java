@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     DBHelper jobDirectoryDB;
 
-
     ArrayList<JobDescription> jobDescriptionsSelect = new ArrayList<>();
     int selectedLocation;
     int selectedSpecialization;
@@ -48,10 +47,14 @@ public class MainActivity extends AppCompatActivity {
         String selectedLanguage = DEFAULTLANGUAGE;
 
 
-        //dataBase creation or update
 
+        /*
         DBHelper dbHelper = DBHelper.getInstance(this);
         dbHelper.getWritableDatabase().close();
+
+        deleteDatabase(dbHelper.DATABASE_NAME);
+        */
+
 
         //getting sharedPreferences
 
@@ -187,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent_about = new Intent(this, AboutActivity.class);
                 this.startActivity(intent_about);
                 break;
+            /*
             case R.id.action_main_data_demo:
                 // Demo Data creation --------
                 InsertDataDemo insertDataDemo = new InsertDataDemo();
@@ -195,16 +199,19 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent_main = new Intent(this, MainActivity.class);
                 this.startActivity(intent_main);
                 break;
+                */
             case R.id.action_settings:
                 Intent intent_settings = new Intent(this, SettingsActivity.class);
                 this.startActivity(intent_settings);
                 break;
+
             /*
             case R.id.action_dbManager:
                 Intent intent_dbManager = new Intent(this, AndroidDatabaseManager.class);
                 this.startActivity(intent_dbManager);
                 break;
                 */
+
             case R.id.action_favorite:
                 Intent intent_favorite = new Intent(this, ListJobFavoriteActivity.class);
                 intent_favorite.putExtra("activityInfo", "favorite");

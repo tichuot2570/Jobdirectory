@@ -19,7 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private SQLiteDatabase db;
 
-    public static final int DATABASE_VERSION = 20;
+    public static final int DATABASE_VERSION = 23;
     public static final String DATABASE_NAME = "Job.db";
     private static DBHelper instance;
     Context context;
@@ -67,7 +67,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
 
         db.execSQL(SQLCommands.SQL_DELETE_CATEGORY);
         db.execSQL(SQLCommands.SQL_DELETE_COMPANY);

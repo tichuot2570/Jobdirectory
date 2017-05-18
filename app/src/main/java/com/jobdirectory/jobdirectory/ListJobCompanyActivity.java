@@ -81,6 +81,7 @@ public class ListJobCompanyActivity extends AppCompatActivity {
                         JobDescription selectedFromList = (JobDescription) parent.getAdapter().getItem(position);
                         String str = selectedFromList.getJobName();
                         selectedJobID = selectedFromList.getIdJobDescription();
+                        System.out.println("UUU " + selectedJobID);
                         Toast.makeText(ListJobCompanyActivity.this, str, Toast.LENGTH_LONG).show();
                         displayEditJob(view);
                     }

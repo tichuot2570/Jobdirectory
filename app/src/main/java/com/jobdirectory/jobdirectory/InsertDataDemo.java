@@ -126,6 +126,14 @@ public class InsertDataDemo extends AppCompatActivity {
         newLocation.setZipCode("3960");
         newLocation.setIdLocation((int) locationDs.createLocation(newLocation));
 
+        /*
+        com.example.nam.myapplication.backend.locationApi.model.Location locationCloud = new com.example.nam.myapplication.backend.locationApi.model.Location();
+        locationCloud.setIdLocation((long)newLocation.getIdLocation());
+        locationCloud.setNameLocation(newLocation.getName_location());
+        locationCloud.setZipCode(newLocation.getZipCode());
+        new EndpointsLocationAsyncTaskInsert(locationCloud).execute();
+        */
+
         newLocation.setName_location("Sion");
         newLocation.setZipCode("1950");
         newLocation.setIdLocation((int) locationDs.createLocation(newLocation));
@@ -217,15 +225,6 @@ public class InsertDataDemo extends AppCompatActivity {
         newJob.setJobDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel porttitor dui. Curabitur finibus orci a consectetur iaculis.");
         newJob.setJobDescriptionFR("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel porttitor dui. Curabitur finibus orci a consectetur iaculis.");
         newJob.setFk_CompanyId(2);
-        newJob.setFk_LocationId(1);
-        newJob.setFk_SpecializationId(1);
-        newJob.setIdJobDescription((int) jobDs.createJob(newJob));
-
-        newJob.setJobName("Digital strategist");
-        newJob.setJobNameFR("Digital strategistr");
-        newJob.setJobDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel porttitor dui. Curabitur finibus orci a consectetur iaculis.");
-        newJob.setJobDescriptionFR("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel porttitor dui. Curabitur finibus orci a consectetur iaculis.");
-        newJob.setFk_CompanyId(1);
         newJob.setFk_LocationId(1);
         newJob.setFk_SpecializationId(1);
         newJob.setIdJobDescription((int) jobDs.createJob(newJob));

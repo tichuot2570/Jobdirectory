@@ -79,6 +79,21 @@ public class JobDescriptionDataSource {
         return id;
     }
 
+    public long createJobFromCloud(JobDescription newJob) {
+        long id;
+        ContentValues values = new ContentValues();
+        values.put(Contract.JobDescription.COLUMN_JobDescription_NAME_JOB_EN, newJob.getJobName());
+        values.put(Contract.JobDescription.COLUMN_JobDescription_JOBDESCRIPTION_EN, newJob.getJobDescription());
+        values.put(Contract.JobDescription.COLUMN_JobDescription_ID_COMPANY, newJob.getFk_CompanyId());
+        values.put(Contract.JobDescription.COLUMN_JobDescription_ID_LOCATION, newJob.getFk_LocationId());
+        values.put(Contract.JobDescription.COLUMN_JobDescription_ID_SPECIALIZATION, newJob.getFk_SpecializationId());
+        values.put(Contract.JobDescription.COLUMN_JobDescription_NAME_JOB_FR, newJob.getJobNameFR());
+        values.put(Contract.JobDescription.COLUMN_JobDescription_JOBDESCRIPTION_FR, newJob.getJobDescriptionFR());
+        id = (long) newJob.getIdJobDescription();
+        System.out.println("UUU cre " + id);
+        return id;
+    }
+
 
     /**
      * Get jobs by the company ID and logged user

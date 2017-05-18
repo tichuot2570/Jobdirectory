@@ -60,6 +60,17 @@
     <string name="edit_job_save_btn">Save</string>
     <string name="edit_job_delete_btn">Delete</string>
 
+    <string name="edit_specialization_title">Edit a specialization in :</string>
+    <string name="edit_specialization_enter">Enter a name</string>
+    <string name="edit_specialization_save_btn">Save</string>
+    <string name="edit_specialization_delete_btn">Delete</string>
+
+    <string name="edit_location_title">Add a new location</string>
+    <string name="edit_location_enter_name">Enter a name</string>
+    <string name="edit_location_enter_zip">Enter a zip code</string>
+    <string name="edit_location_save_btn">Save</string>
+    <string name="edit_location_delete_btn">Delete</string>
+
     <string name="login_title">Login</string>
 
 </resources>
